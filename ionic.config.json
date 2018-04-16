@@ -1,0 +1,8 @@
+{
+  "name": "smartlight",
+  "app_id": "d757e0f4",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
