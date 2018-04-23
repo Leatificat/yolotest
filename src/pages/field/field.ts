@@ -29,14 +29,17 @@ export class FieldPage {
 
       this.fieldName = newName;
     
-
   }
 
   //Metod för att få namnet på en fotbollsplan.
 
   getName() {
 
-    return this.fieldName;
+    if(this.fieldName.length === 0){
+
+      this.fieldName = this.defaultName;
+
+    } return this.fieldName;
 
   }
 
