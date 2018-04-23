@@ -1,13 +1,7 @@
-<!--
-  Generated template for the FieldPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Fotbollsplan</ion-title>
+    <ion-title>Fotbollsplan | {{fieldName}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,6 +9,16 @@
 
 <ion-content padding>
 
-<h1>Här ska det finnas information om fotbollsplaner.</h1>
+  <h1>{{fieldName}}</h1>
+
+  <h1>{{visitorAmount}}</h1>
+
+  <div padding></div>
+
+  <button ion-button icon-left full color="dark" round> <ion-icon name="md-calendar"></ion-icon>Visa bokningar</button>
+
+  <button ion-button icon-left full color="dark" round> <ion-icon name="md-bulb"></ion-icon>Tänd belysning </button>
+
+  
 
 </ion-content>

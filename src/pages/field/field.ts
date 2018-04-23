@@ -5,31 +5,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @IonicPage()
 @Component({
   selector: 'page-field',
+  providers: [],
   templateUrl: 'field.html',
 })
 export class FieldPage {
 
-  private fieldName: string; //Namnet på planen.
-  private visitorAmount: string; //Antalet besökare beskrivet i som hög/medel/låg.
-  private defaultName = 'Ej namngiven fotbollsplan'; //Om planen inte namnges kommer den att heta så.
-  
+  fieldName: string; //Namnet på planen.
+  visitorAmount: string; //Antalet besökare beskrivet i som hög/medel/låg.
+  defaultName = "Namnlös plan"; //Om planen inte namnges kommer den att heta så.
+
+
   //Konstruktor för skapande av fotbollsplanen
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
+    this.setVisitorAmount();
+
   }
 
   //Metod för att tilldela namn till fotbollsplanen.
-  
+
   setName(newName) {
 
-    this.fieldName = newName;
-
-    if(newName == null || newName == undefined || newName.length == 0 || newName == ''){
-
-      this.fieldName = this.defaultName; 
-
-    }
+      this.fieldName = newName;
+    
 
   }
 
@@ -41,24 +40,28 @@ export class FieldPage {
 
   }
 
-  //Metod för att få planens belastningsgrad.
+  //Metod för att sätta planens belastningsgrad.
 
-  getVisitorAmount() {
+  setVisitorAmount() {
 
     let noiseLevel = Math.floor(Math.random() * 3) + 1;
 
-    if(noiseLevel == 1){
+    if (noiseLevel == 1) {
       this.visitorAmount = 'Belastning: låg';
     }
-    if(noiseLevel == 2){
+    if (noiseLevel == 2) {
       this.visitorAmount = 'Belastning: medel';
     }
-    if(noiseLevel == 3){
+    if (noiseLevel == 3) {
       this.visitorAmount = 'Belastning: hög';
     }
 
-    return this.visitorAmount;
+  }
 
+  //Metod för att få planens belastningsgrad.
+
+  getVisitorAmount() {
+    return this.visitorAmount;
   }
 
 }

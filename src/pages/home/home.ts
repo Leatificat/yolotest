@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { FieldPage } from '../field/field';
+
+
 
 @Component({
   selector: 'page-home',
@@ -11,7 +13,7 @@ export class HomePage {
 
   @ViewChild('fieldName') fieldName;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
 
   }
 
@@ -19,21 +21,30 @@ export class HomePage {
 
   createField(fieldName) {
 
+    let newName = this.fieldName.value;
+
     let field = new FieldPage(this.navCtrl, this.navParams);
 
-    field.setName(this.fieldName.value);
+    field.setName(newName);
 
     console.log(field.getName(), field.getVisitorAmount());
 
+    this.showConfirmationToast(field.getName(), field.getVisitorAmount());
+
   }
 
-  //Metod som visar en "sida" tillhörande en fotbollsplan
+  showConfirmationToast(fieldName, visitorAmount) {
+    let toast = this.toastCtrl.create({
+      message: "Fotbollsplan " + fieldName + " skapad. " + visitorAmount,
+      duration: 3000
+    });
+    toast.present();
+  }
 
-showField(){
+  showField(){
+    this.navCtrl.push(FieldPage);
+  }
 
-this.navCtrl.push(FieldPage);
-
-}
 
 
 }
