@@ -9,28 +9,31 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FieldPage {
 
-  private fieldName: string;
-  private visitorAmount: string;
-  private defaultName = 'Ej namngiven fotbollsplan';
+  private fieldName: string; //Namnet på planen.
+  private visitorAmount: string; //Antalet besökare beskrivet i som hög/medel/låg.
+  private defaultName = 'Ej namngiven fotbollsplan'; //Om planen inte namnges kommer den att heta så.
   
+  //Konstruktor för skapande av fotbollsplanen
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, name: string) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
 
-    if (name == null || name == '' || name == undefined) {
-      name = this.defaultName;
+  }
+
+  //Metod för att tilldela namn till fotbollsplanen.
+  
+  setName(newName) {
+
+    this.fieldName = newName;
+
+    if(newName == null || newName == undefined || newName.length == 0 || newName == ''){
+
+      this.fieldName = this.defaultName; 
+
     }
 
-    this.fieldName = name;
-
   }
 
-  getDetails() {
-
-    this.getActivity();
-
-    console.log(this.fieldName, this.getActivity());
-
-  }
+  //Metod för att få namnet på en fotbollsplan.
 
   getName() {
 
@@ -38,13 +41,9 @@ export class FieldPage {
 
   }
 
-  setName(string: 'newName') {
+  //Metod för att få planens belastningsgrad.
 
-    this.fieldName = 'newName';
-
-  }
-
-  getActivity() {
+  getVisitorAmount() {
 
     let noiseLevel = Math.floor(Math.random() * 3) + 1;
 
@@ -61,19 +60,5 @@ export class FieldPage {
     return this.visitorAmount;
 
   }
-
-
-
-
-
-
-
-
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FieldPage');
-  }
-
-
 
 }

@@ -7,11 +7,7 @@ import { FieldPage } from '../field/field';
   templateUrl: 'home.html'
 })
 
-// I PRINCIP ALLTING JAG HAR GJORT HÄR ÄR OVIKTIGT FÖR PROJEKTET, BARA FÖR ATT TESTA FIELD.TS-FUNKTIONALITEN
-
-export class HomePage {
-
-  private listOfFields: Array<FieldPage> = []; 
+export class HomePage { 
 
   @ViewChild('fieldName') fieldName;
 
@@ -19,24 +15,25 @@ export class HomePage {
 
   }
 
+  //Metod för att kontrollera att det går att skapa en ny fotbollsplan.
 
   createField(fieldName) {
 
-    let field = new FieldPage(this.navCtrl, this.navParams, this.fieldName.value);
+    let field = new FieldPage(this.navCtrl, this.navParams);
 
-    console.log(field.getDetails());
+    field.setName(this.fieldName.value);
 
-    this.listOfFields.push(field);
-
-  }
-
-  getFieldFromList(){
-
-   // Metod som ska hämta en fotbollsplan från listan, OVIKTIG FÖR PVT-PROJEKTET
-    
+    console.log(field.getName(), field.getVisitorAmount());
 
   }
 
+  //Metod som visar en "sida" tillhörande en fotbollsplan
+
+showField(){
+
+this.navCtrl.push(FieldPage);
+
+}
 
 
 }
