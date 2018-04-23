@@ -15,11 +15,31 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FieldPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private fieldName: string;
+  private visitorAmount: string;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, name: string) {
+
+    this.fieldName = name;
+
   }
+
+  getDetails(){
+    
+    console.log(this.fieldName, );
+
+  }
+
+
+
+
+
+  
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FieldPage');
   }
+
+
 
 }
