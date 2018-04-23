@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the FieldPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -17,16 +11,54 @@ export class FieldPage {
 
   private fieldName: string;
   private visitorAmount: string;
+  private defaultName = 'Ej namngiven fotbollsplan';
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams, name: string) {
+
+    if (name == null || name == '' || name == undefined) {
+      name = this.defaultName;
+    }
 
     this.fieldName = name;
 
   }
 
-  getDetails(){
-    
-    console.log(this.fieldName, );
+  getDetails() {
+
+    this.getActivity();
+
+    console.log(this.fieldName, this.getActivity());
+
+  }
+
+  getName() {
+
+    return this.fieldName;
+
+  }
+
+  setName(string: 'newName') {
+
+    this.fieldName = 'newName';
+
+  }
+
+  getActivity() {
+
+    let noiseLevel = Math.floor(Math.random() * 3) + 1;
+
+    if(noiseLevel == 1){
+      this.visitorAmount = 'Belastning: låg';
+    }
+    if(noiseLevel == 2){
+      this.visitorAmount = 'Belastning: medel';
+    }
+    if(noiseLevel == 3){
+      this.visitorAmount = 'Belastning: hög';
+    }
+
+    return this.visitorAmount;
 
   }
 
@@ -34,7 +66,9 @@ export class FieldPage {
 
 
 
-  
+
+
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FieldPage');
