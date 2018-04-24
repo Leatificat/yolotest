@@ -9,13 +9,17 @@ import { FieldPage } from '../field/field';
   templateUrl: 'home.html'
 })
 
-export class HomePage { 
+export class HomePage {
+
+
 
   @ViewChild('fieldName') fieldName;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
 
   }
+
+  list = new Array();
 
   //Metod för att kontrollera att det går att skapa en ny fotbollsplan.
 
@@ -35,16 +39,50 @@ export class HomePage {
 
   showConfirmationToast(fieldName, visitorAmount) {
     let toast = this.toastCtrl.create({
-      message: "Fotbollsplan " + fieldName + " skapad. " + visitorAmount,
+      message: "Fotbollsplan: \"" + fieldName + "\" skapad. \n Belastningsnivå: " + "\"" + visitorAmount + "\"",
       duration: 3000
     });
     toast.present();
   }
 
-  showField(){
+  showField() {
     this.navCtrl.push(FieldPage);
   }
 
+  skapa() {
 
+    let fieldName;
+
+    for (var i = 0; i < 5; i++) {
+
+      switch (i) {
+
+        case 0: fieldName = "första planen"; break;
+        case 1: fieldName = "andra planen"; break;
+        case 2: fieldName = "tredje planen"; break;
+        case 3: fieldName = "fjärde planen"; break;
+        case 4: fieldName = "femte planen"; break;
+
+      }
+
+
+
+      let field = new FieldPage(this.navCtrl, this.navParams);
+      field.setName(fieldName);
+      console.log(field.getName());
+
+      this.list.push(field);
+
+    }
+
+  }
+
+  
 
 }
+
+}
+
+
+
+

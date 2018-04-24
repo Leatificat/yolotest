@@ -7,18 +7,32 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
-  <h1>{{fieldName}}</h1>
+  <div padding>
+    <ion-list class="fieldView" no-lines>
 
-  <h1>{{visitorAmount}}</h1>
+      <ion-item class="fieldName">
+        <p class="fieldText">{{getName()}}
+          <p>
+      </ion-item>
 
-  <div padding></div>
+      <ion-item>
+        <button ion-button large round icon-left full (click)="setVisitorAmount()">
+          <ion-icon name="md-sync"></ion-icon>Belastning: {{getVisitorAmount()}}</button>
+      </ion-item>
 
-  <button ion-button icon-left full color="dark" round> <ion-icon name="md-calendar"></ion-icon>Visa bokningar</button>
+      <ion-item>
+        <button ion-button large round icon-left full>
+          <ion-icon name="md-calendar"></ion-icon>Visa bokningar</button>
+      </ion-item>
 
-  <button ion-button icon-left full color="dark" round> <ion-icon name="md-bulb"></ion-icon>Tänd belysning </button>
+      <ion-item>
+        <button ion-button large round icon-left full>
+          <ion-icon name="md-bulb"></ion-icon>Tänd belysning </button>
+      </ion-item>
 
-  
+    </ion-list>
+  </div>
 
 </ion-content>

@@ -13,17 +13,15 @@ export class FieldPage {
   fieldName: string; //Namnet på planen.
   visitorAmount: string; //Antalet besökare beskrivet i som hög/medel/låg.
   defaultName = "Namnlös plan"; //Om planen inte namnges kommer den att heta så.
+  xPos: string; //koordinater för eventuell API?
+  yPos: string; //koordinater för eventuell API?
 
-
-  //Konstruktor för skapande av fotbollsplanen
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
-    this.setVisitorAmount();
+    this.visitorAmount = "Okänd";
 
   }
-
-  //Metod för att tilldela namn till fotbollsplanen.
 
   setName(newName) {
 
@@ -31,11 +29,9 @@ export class FieldPage {
     
   }
 
-  //Metod för att få namnet på en fotbollsplan.
-
   getName() {
 
-    if(this.fieldName.length === 0){
+    if(this.fieldName == null || this.fieldName === undefined || this.fieldName.length === 0){
 
       this.fieldName = this.defaultName;
 
@@ -43,28 +39,36 @@ export class FieldPage {
 
   }
 
-  //Metod för att sätta planens belastningsgrad.
-
   setVisitorAmount() {
 
     let noiseLevel = Math.floor(Math.random() * 3) + 1;
 
     if (noiseLevel == 1) {
-      this.visitorAmount = 'Belastning: låg';
+      this.visitorAmount = 'Låg';
     }
     if (noiseLevel == 2) {
-      this.visitorAmount = 'Belastning: medel';
+      this.visitorAmount = 'Medel';
     }
     if (noiseLevel == 3) {
-      this.visitorAmount = 'Belastning: hög';
+      this.visitorAmount = 'Hög';
     }
 
   }
 
-  //Metod för att få planens belastningsgrad.
-
   getVisitorAmount() {
     return this.visitorAmount;
+  }
+
+  getPosX(){
+
+    return this.xPos;
+
+  }
+
+  getPosY(){
+
+    return this.yPos;
+
   }
 
 }
