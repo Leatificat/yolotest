@@ -26,6 +26,10 @@ export class FieldPage {
 
       this.fieldName = "Namnlös";
 
+    } else {
+
+      this.fieldName = newName;
+
     }
     
 
