@@ -5,17 +5,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @IonicPage()
 @Component({
   selector: 'page-field',
-  providers: [],
   templateUrl: 'field.html',
 })
 export class FieldPage {
 
-  fieldName: string; //Namnet på planen.
-  visitorAmount: string; //Antalet besökare beskrivet i som hög/medel/låg.
-  defaultName = "Namnlös plan"; //Om planen inte namnges kommer den att heta så.
-  xPos: string; //koordinater för eventuell API?
-  yPos: string; //koordinater för eventuell API?
-
+  private fieldName: string;
+  private visitorAmount: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
@@ -25,17 +20,20 @@ export class FieldPage {
 
   setName(newName) {
 
-      this.fieldName = newName;
+    let name = newName;
+
+    if(name == null || name == undefined || name.length == 0){
+
+      this.fieldName = "Namnlös";
+
+    }
     
+
   }
 
   getName() {
 
-    if(this.fieldName == null || this.fieldName === undefined || this.fieldName.length === 0){
-
-      this.fieldName = this.defaultName;
-
-    } return this.fieldName;
+    return this.fieldName;
 
   }
 
@@ -43,14 +41,14 @@ export class FieldPage {
 
     let noiseLevel = Math.floor(Math.random() * 3) + 1;
 
-    if (noiseLevel == 1) {
-      this.visitorAmount = 'Låg';
-    }
-    if (noiseLevel == 2) {
-      this.visitorAmount = 'Medel';
-    }
-    if (noiseLevel == 3) {
-      this.visitorAmount = 'Hög';
+    switch (noiseLevel) {
+
+      case 1: this.visitorAmount = "Låg"; document.getElementById("visitorBtn").style.backgroundColor = "green"; break;
+
+      case 2: this.visitorAmount = "Mellan"; document.getElementById("visitorBtn").style.backgroundColor = "yellow"; break;
+
+      case 3: this.visitorAmount = "Hög"; document.getElementById("visitorBtn").style.backgroundColor = "red"; break;
+
     }
 
   }
@@ -59,15 +57,11 @@ export class FieldPage {
     return this.visitorAmount;
   }
 
-  getPosX(){
+  ionViewDidLoad() {
 
-    return this.xPos;
+    let name = this.navParams.get("name");
 
-  }
-
-  getPosY(){
-
-    return this.yPos;
+    this.fieldName = name;
 
   }
 

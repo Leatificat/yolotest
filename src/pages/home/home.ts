@@ -11,19 +11,21 @@ import { FieldPage } from '../field/field';
 
 export class HomePage {
 
-
-
   @ViewChild('fieldName') fieldName;
+  @ViewChild('searchValue') searchText;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
+
+
 
   }
 
   list = new Array();
 
+
   //Metod för att kontrollera att det går att skapa en ny fotbollsplan.
 
-  createField(fieldName) {
+  createField() {
 
     let newName = this.fieldName.value;
 
@@ -31,57 +33,69 @@ export class HomePage {
 
     field.setName(newName);
 
+    this.list.push(field);
+
+    this.addList(newName);
+
     console.log(field.getName(), field.getVisitorAmount());
 
-    this.showConfirmationToast(field.getName(), field.getVisitorAmount());
+
 
   }
 
-  showConfirmationToast(fieldName, visitorAmount) {
-    let toast = this.toastCtrl.create({
-      message: "Fotbollsplan: \"" + fieldName + "\" skapad. \n Belastningsnivå: " + "\"" + visitorAmount + "\"",
-      duration: 3000
-    });
-    toast.present();
-  }
 
-  showField() {
-    this.navCtrl.push(FieldPage);
-  }
 
-  skapa() {
+  getField() {
 
+    let searchText = this.searchText.value;
+    let field;
     let fieldName;
+    let fieldData;
+    let listLength = this.list.length;
 
-    for (var i = 0; i < 5; i++) {
 
-      switch (i) {
+    for (let i = 0; i < listLength; i++) {
 
-        case 0: fieldName = "första planen"; break;
-        case 1: fieldName = "andra planen"; break;
-        case 2: fieldName = "tredje planen"; break;
-        case 3: fieldName = "fjärde planen"; break;
-        case 4: fieldName = "femte planen"; break;
+      field = this.list[i];
+      fieldName = field.getName();
+
+      if (fieldName.toLowerCase() == searchText.toLowerCase()) {
+
+        fieldData = {
+
+          name: fieldName,
+
+        }
+
+        this.navCtrl.push(FieldPage, fieldData);
 
       }
-
-
-
-      let field = new FieldPage(this.navCtrl, this.navParams);
-      field.setName(fieldName);
-      console.log(field.getName());
-
-      this.list.push(field);
 
     }
 
   }
 
-  
+  addList(fieldName) {
+
+    let list = document.getElementById("fieldList");
+
+    let listItem = document.createElement("p");
+
+    let itemText = document.createTextNode(fieldName);
+
+    listItem.appendChild(itemText);
+
+    list.appendChild(listItem);
+
+  }
+
 
 }
 
-}
+
+
+
+
 
 
 

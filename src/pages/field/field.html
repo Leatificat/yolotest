@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Fotbollsplan | {{fieldName}}</ion-title>
+    <ion-title> Vald fotbollsplan </ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,7 +18,7 @@
       </ion-item>
 
       <ion-item>
-        <button ion-button large round icon-left full (click)="setVisitorAmount()">
+        <button ion-button id="visitorBtn" large round icon-left full (click)="setVisitorAmount()">
           <ion-icon name="md-sync"></ion-icon>Belastning: {{getVisitorAmount()}}</button>
       </ion-item>
 
